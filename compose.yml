@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  myapp:
+    image: shinsenter/yii:latest
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./src:/var/www/html
+  mypg:
+    image: postgres 
+    container_name: pgdb 
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_PASSWORD: 326 
+      PGDATA: /var/lib/postgresql/data/pgdata 
+    volumes:
+      - ./pgdb:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
